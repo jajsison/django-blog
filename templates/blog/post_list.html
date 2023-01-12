@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <h3 class="mt-3 border-bottom-">For you:</h3>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% comment %} {% for article in post_list %}
+      <div class="col">
+        <div class="card h-100">
+          {% for blog in blog %}
+           
+              {% endfor %} {% endcomment %}
+              <h2>{{ blog.title }}</h2>
+              <p>{{ blog.content }}</p>
+              <p>Author:
+                {{ blog.author }}</p>
+              <p>Date created:
+                {{ blog.date_created }}</p>
+            </div>
+          </div>
+            {% comment %} <img src="{% get_media_prefix %}{{ article.image }}" class="card-img-top" alt="{{ article.title }}">
+            <a class="card-body text-decoration-none text-dark">
+              <h3 class="card-title">{{ post.title|title }}</h3>
+              <p class="card-text">
+                {{ article.content|safe|linebreaksbr|truncatechars:100 }}
+                {% if article.content | length > 100 %}...{% endif %}
+              </p>
+              <small>
+                {{ article.author.username|title }}
+                -
+                {{ article.created_on|date:"M d, Y" }}
+              </small> {% endcomment %}
+            
+          {% comment %} </a> {% endcomment %}
+       
+
+    {% endblock %}

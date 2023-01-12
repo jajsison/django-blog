@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <div>
+    <form method="POST" action="{% url 'login' %}" id="loginForm">
+      {% csrf_token %}
+      {% for field in form.visible_fields %}
+        <div class="form-group">
+          <label>{{field.label}}</label>
+          {{ field|add_class:'form-control'|add_error_class:'is-invalid' }}
+          {% if field.errors %}
+            <div class="invalid-feedback">
+              {{ field.errors }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <div class="float-right">
+          <input type="submit" class="btn btn-outline-dark" form = "loginForm"value="Login">
+      </div>
+
+    </form>
+    <p class="text-center">
+      If you don't have an account,
+      <a href="register">Create New User</a instead </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% comment %} {% block content %}
+  <div class="container">
+    <div>
+      {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+      {% endfor %}
+
+      <form method="POST">
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+          <div class="form-group">
+            <label>{{field.label}}</label>
+            {{ field|add_class:'form-control'|add_error_class:'is-invalid' }}
+            {% if field.errors %}
+              <div class="invalid-feedback">
+                {{ field.errors }}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </form>
+      <div class="float-right">
+        <button type="submit" class="btn btn-outline-dark" form="loginForm">Login</button>
+      </div>
+    </div>
+  </div>
+{% endblock %} {% endcomment %}
